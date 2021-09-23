@@ -1,8 +1,8 @@
-package com.example.alphabanktest.dto;
+package com.example.alphabanktest.dto.gif;
 
 import lombok.Data;
 
 @Data
 public class GifApiWrapper {
-    GifsImagesWrapper[] data;
+    GifApiDataElementWrapper[] data;
 }
