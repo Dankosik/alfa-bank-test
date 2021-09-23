@@ -1,7 +1,7 @@
 package com.example.alphabanktest.controller;
 
 import com.example.alphabanktest.dto.gif.GifApiOriginalWrapper;
-import com.example.alphabanktest.service.GifClient;
+import com.example.alphabanktest.feign.GifClient;
 import com.example.alphabanktest.service.GifService;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;

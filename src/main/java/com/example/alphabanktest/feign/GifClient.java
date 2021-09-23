@@ -1,4 +1,4 @@
-package com.example.alphabanktest.service;
+package com.example.alphabanktest.feign;
 
 import com.example.alphabanktest.dto.gif.GifApiWrapper;
 import org.springframework.cloud.openfeign.FeignClient;
