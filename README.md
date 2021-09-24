@@ -1,3 +1,5 @@
+# Test Task for Junior Java Backend Developer Position
+
 ### Dowload java 11
 
 **Windows**
@@ -26,3 +28,20 @@
 4) ```cd alpha-bank-test```
 5) ```gradlew bootRun``` - run application or ```gradlew bootRun --args='--server.port=8888'``` - to select server port
 6) ```gradlew test``` - run tests
+
+
+### Api example
+
+**Request**
+ 
+```[GET] http://localhost:8080/api/v1/exchange-rate/RUB```
+    
+**Response**
+```  
+ {
+     "url":"https://media4.giphy.com/media/YTRUPHI7fXK6s/giphy.gifcid=1f7b3757yg4dujtj1weh7v0v3m5bittbha29gwlcdrlqvb9q&rid=giphy.gif&ct=g",
+     "size":"978529",
+     "width":"292",
+     "height":"164"
+ }
+ ```
