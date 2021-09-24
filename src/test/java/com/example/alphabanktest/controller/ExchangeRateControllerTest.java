@@ -31,18 +31,16 @@ import static org.mockito.internal.verification.VerificationModeFactory.times;
 @WebMvcTest(value = ExchangeRateController.class)
 @AutoConfigureMockMvc(addFilters = false)
 class ExchangeRateControllerTest {
+    private final GifApiWrapper gifApiWrapper = new GifApiWrapper();
+    private final GifApiImagesWrapper gifApiImagesWrapper = new GifApiImagesWrapper();
+    private final GifApiOriginalWrapper gifApiOriginalWrapper = new GifApiOriginalWrapper();
+    private final GifApiDataElementWrapper gifApiDataElementWrapper = new GifApiDataElementWrapper();
     @Autowired
     private MockMvc mockMvc;
     @MockBean
     private ExchangeRateService exchangeRateService;
     @MockBean
     private GifService gifService;
-
-    private final GifApiWrapper gifApiWrapper = new GifApiWrapper();
-    private final GifApiImagesWrapper gifApiImagesWrapper = new GifApiImagesWrapper();
-    private final GifApiOriginalWrapper gifApiOriginalWrapper = new GifApiOriginalWrapper();
-    private final GifApiDataElementWrapper gifApiDataElementWrapper = new GifApiDataElementWrapper();
-
 
     @BeforeEach
     void setUp() {

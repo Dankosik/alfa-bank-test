@@ -21,15 +21,14 @@ import static org.mockito.Mockito.*;
 @ExtendWith(SpringExtension.class)
 @SpringBootTest(classes = {GifServiceImpl.class})
 class GifServiceImplTest {
-    @Autowired
-    private GifServiceImpl gifService;
-    @MockBean
-    private GifClient gifClient;
     private final GifApiWrapper gifApiWrapper = new GifApiWrapper();
     private final GifApiImagesWrapper gifApiImagesWrapper = new GifApiImagesWrapper();
     private final GifApiOriginalWrapper gifApiOriginalWrapper = new GifApiOriginalWrapper();
     private final GifApiDataElementWrapper gifApiDataElementWrapper = new GifApiDataElementWrapper();
-
+    @Autowired
+    private GifServiceImpl gifService;
+    @MockBean
+    private GifClient gifClient;
 
     @BeforeEach
     void setUp() {
@@ -58,8 +57,8 @@ class GifServiceImplTest {
 
         verify(gifClient, times(2)).getGifApiWrapperByName("rich");
     }
-    @Test
 
+    @Test
     void whenGifIsNotFound_thenGifNotFoundExceptionShouldBeThrown() {
         GifApiWrapper gifApiWrapper = new GifApiWrapper();
         gifApiWrapper.setData(new GifApiDataElementWrapper[0]);

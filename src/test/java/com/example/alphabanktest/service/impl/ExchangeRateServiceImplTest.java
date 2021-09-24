@@ -21,12 +21,12 @@ import static org.mockito.Mockito.*;
 @ExtendWith(SpringExtension.class)
 @SpringBootTest(classes = {ExchangeRateServiceImpl.class})
 class ExchangeRateServiceImplTest {
+    private final ExchangeRate exchangeRate = new ExchangeRate();
+    private final ExchangeRate yesterdayExchangeRate = new ExchangeRate();
     @Autowired
     private ExchangeRateServiceImpl exchangeRateService;
     @MockBean
     private ExchangeRateClient exchangeRateClient;
-    private final ExchangeRate exchangeRate = new ExchangeRate();
-    private final ExchangeRate yesterdayExchangeRate = new ExchangeRate();
     private String format;
 
 
