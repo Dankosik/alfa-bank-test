@@ -12,5 +12,5 @@ public interface GifClient {
             "&offset=${gif-api.url.offset-argument}" +
             "&rating=${gif-api.url.rating-argument}" +
             "&lang=${gif-api.url.lang-argument}")
-    GifApiWrapper getGifApiWrapperByName(@RequestParam String q);
+    GifApiWrapper getGifApiWrapperByGifName(@RequestParam String q);
 }

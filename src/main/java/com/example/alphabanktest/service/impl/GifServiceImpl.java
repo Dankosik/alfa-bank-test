@@ -19,11 +19,11 @@ public class GifServiceImpl implements GifService {
 
     @Override
     public GifOriginalWrapper getRandomGifByName(String name) {
-        if (gifClient.getGifApiWrapperByName(name).getData().length == 0) {
+        if (gifClient.getGifApiWrapperByGifName(name).getData().length == 0) {
             log.warn("Gifs with name: " + name + " are not found");
             throw new GifNotFoundException("Gifs with name: " + name + " are not found");
         }
-        GifApiWrapper gifApiWrapper = gifClient.getGifApiWrapperByName(name);
+        GifApiWrapper gifApiWrapper = gifClient.getGifApiWrapperByGifName(name);
         int randomIndex = getRandomIndex(gifApiWrapper);
         return gifApiWrapper.getData()[randomIndex].getImages().getOriginal();
     }

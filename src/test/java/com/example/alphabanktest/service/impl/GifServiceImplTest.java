@@ -43,7 +43,7 @@ class GifServiceImplTest {
 
     @Test
     void whenGetRandomGifByName_thenGifApiOriginalWrapperShouldBeReturned() {
-        when(gifClient.getGifApiWrapperByName("rich")).thenReturn(gifApiWrapper);
+        when(gifClient.getGifApiWrapperByGifName("rich")).thenReturn(gifApiWrapper);
 
         GifOriginalWrapper expected = new GifOriginalWrapper();
         expected.setUrl("https://gif/rich");
@@ -55,7 +55,7 @@ class GifServiceImplTest {
 
         assertEquals(expected, actual);
 
-        verify(gifClient, times(2)).getGifApiWrapperByName("rich");
+        verify(gifClient, times(2)).getGifApiWrapperByGifName("rich");
     }
 
     @Test
@@ -63,10 +63,10 @@ class GifServiceImplTest {
         GifApiWrapper gifApiWrapper = new GifApiWrapper();
         gifApiWrapper.setData(new GifDataElementWrapper[0]);
 
-        when(gifClient.getGifApiWrapperByName("rich")).thenReturn(gifApiWrapper);
+        when(gifClient.getGifApiWrapperByGifName("rich")).thenReturn(gifApiWrapper);
 
         assertThrows(GifNotFoundException.class, () -> gifService.getRandomGifByName("rich"));
 
-        verify(gifClient, times(1)).getGifApiWrapperByName("rich");
+        verify(gifClient, times(1)).getGifApiWrapperByGifName("rich");
     }
 }
