@@ -1,6 +1,6 @@
 # Test Task for Junior Java Backend Developer Position
 
-### Dowload java 11
+### Dowload java 11 if needed
 
 **Windows**
 
