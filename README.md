@@ -34,7 +34,7 @@
 
 **Request**
  
-```[GET] http://localhost:8080/api/v1/exchange-rate/RUB```
+```[GET] http://localhost:8080/api/v1/exchange-rate/RUB/gif```
     
 **Response**
 ```  
@@ -44,4 +44,18 @@
      "width":"292",
      "height":"164"
  }
+ ```
+ 
+ **Request**
+ 
+```[GET] http://localhost:8080/api/v1/exchange-rate/QWEASDAZF/gif```
+    
+**Response**
+```  
+ {
+    "error": "NOT_FOUND",
+    "message": "Currency: QWEASDAZF is not found",
+    "timestamp": "2021-09-24T08:17:54.171+00:00",
+    "status": 404
+}
  ```
