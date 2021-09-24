@@ -5,7 +5,7 @@ import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
-@FeignClient(name = "exchange-rate", url = "${exchange-rate-api.url}")
+@FeignClient(name = "exchange-rate", url = "${exchange-rate-api.url.value}")
 public interface ExchangeRateClient {
     @GetMapping("/latest.json?app_id=${exchange-rate-api.api-key}")
     ExchangeRate getLatestExchangeRate();

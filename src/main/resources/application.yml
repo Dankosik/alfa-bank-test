@@ -1,6 +1,12 @@
 exchange-rate-api:
-  url: "https://openexchangerates.org/api"
+  url:
+    value: "https://openexchangerates.org/api"
   api-key: "0927b48bb2cb438fa303e43c7eb0a348"
 gif-api:
-  url: "https://api.giphy.com/v1/gifs"
+  url:
+    value: "https://api.giphy.com/v1/gifs"
+    rating-argiment: "g"
+    lang-argument: "en"
+    limit-argument: "10"
+    offset-argument: "1"
   api-key: "MoHieYC44O2SRXtBfEtumvod6oCwER56"
