@@ -12,7 +12,7 @@
 **Linux/MacOS**
 
 1) Open terminal
-2) ```cd /path/to/your/folder```
+2) ```cd /path/to/your/directory```
 3) ```git clone https://github.com/Dankosik/alpha-bank-test```
 4) ```cd alpha-bank-test```
 5) ```./gradlew bootRun``` - run application or ```./gradlew bootRun --args='--server.port=8888'``` - to select server port
@@ -23,7 +23,7 @@
 
 **Windows**
 1) Open comand line
-2) ```cd /path/to/your/folder```
+2) ```cd /path/to/your/directory```
 3) ```git clone https://github.com/Dankosik/alpha-bank-test```
 4) ```cd alpha-bank-test```
 5) ```gradlew bootRun``` - run application or ```gradlew bootRun --args='--server.port=8888'``` - to select server port
