@@ -30,11 +30,6 @@ public class GifServiceImpl implements GifService {
 
     private int getRandomIndex(GifApiWrapper gifApiWrapper) {
         Random random = new Random();
-        int max = gifApiWrapper.getData().length;
-        if (max == 1) {
-            return 0;
-        }
-        int min = 0;
-        return random.nextInt((max - min) + 1) + min;
+        return random.nextInt(gifApiWrapper.getData().length);
     }
 }
