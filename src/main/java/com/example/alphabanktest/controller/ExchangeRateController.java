@@ -18,7 +18,7 @@ public class ExchangeRateController {
     private final ExchangeRateService exchangeRateService;
     private final GifService gifService;
 
-    @GetMapping("/{currency}")
+    @GetMapping("/{currency}/gif")
     ResponseEntity<GifOriginalWrapper> getGif(@PathVariable String currency) {
         if (exchangeRateService.isLatestCurrencyValueMoreThanYesterday(currency)) {
             return new ResponseEntity<>(gifService.getRandomGifByName("rich"), HttpStatus.OK);

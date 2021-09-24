@@ -59,7 +59,7 @@ class ExchangeRateControllerTest {
         when(gifService.getRandomGifByName("rich")).thenReturn(gifOriginalWrapper);
 
         RequestBuilder requestBuilder = MockMvcRequestBuilders
-                .get("/api/v1/exchange-rate/RUB")
+                .get("/api/v1/exchange-rate/RUB/gif")
                 .accept(MediaType.APPLICATION_JSON);
 
         MvcResult result = mockMvc.perform(requestBuilder).andReturn();
@@ -83,7 +83,7 @@ class ExchangeRateControllerTest {
         when(gifService.getRandomGifByName("broke")).thenReturn(gifOriginalWrapper);
 
         RequestBuilder requestBuilder = MockMvcRequestBuilders
-                .get("/api/v1/exchange-rate/RUB")
+                .get("/api/v1/exchange-rate/RUB/gif")
                 .accept(MediaType.APPLICATION_JSON);
 
         MvcResult result = mockMvc.perform(requestBuilder).andReturn();
