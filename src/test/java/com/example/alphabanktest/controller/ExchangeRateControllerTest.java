@@ -1,9 +1,9 @@
 package com.example.alphabanktest.controller;
 
+import com.example.alphabanktest.dto.gif.GifApiWrapper;
 import com.example.alphabanktest.dto.gif.GifDataElementWrapper;
 import com.example.alphabanktest.dto.gif.GifImagesWrapper;
 import com.example.alphabanktest.dto.gif.GifOriginalWrapper;
-import com.example.alphabanktest.dto.gif.GifApiWrapper;
 import com.example.alphabanktest.service.ExchangeRateService;
 import com.example.alphabanktest.service.GifService;
 import org.junit.jupiter.api.BeforeEach;

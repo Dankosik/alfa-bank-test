@@ -1,9 +1,9 @@
 package com.example.alphabanktest.service.impl;
 
+import com.example.alphabanktest.dto.gif.GifApiWrapper;
 import com.example.alphabanktest.dto.gif.GifDataElementWrapper;
 import com.example.alphabanktest.dto.gif.GifImagesWrapper;
 import com.example.alphabanktest.dto.gif.GifOriginalWrapper;
-import com.example.alphabanktest.dto.gif.GifApiWrapper;
 import com.example.alphabanktest.exceptions.GifNotFoundException;
 import com.example.alphabanktest.feign.GifClient;
 import org.junit.jupiter.api.BeforeEach;
