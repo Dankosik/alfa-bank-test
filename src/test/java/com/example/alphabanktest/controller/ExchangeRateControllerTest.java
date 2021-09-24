@@ -1,8 +1,8 @@
 package com.example.alphabanktest.controller;
 
-import com.example.alphabanktest.dto.gif.GifApiDataElementWrapper;
-import com.example.alphabanktest.dto.gif.GifApiImagesWrapper;
-import com.example.alphabanktest.dto.gif.GifApiOriginalWrapper;
+import com.example.alphabanktest.dto.gif.GifDataElementWrapper;
+import com.example.alphabanktest.dto.gif.GifImagesWrapper;
+import com.example.alphabanktest.dto.gif.GifOriginalWrapper;
 import com.example.alphabanktest.dto.gif.GifApiWrapper;
 import com.example.alphabanktest.service.ExchangeRateService;
 import com.example.alphabanktest.service.GifService;
@@ -32,9 +32,9 @@ import static org.mockito.internal.verification.VerificationModeFactory.times;
 @AutoConfigureMockMvc(addFilters = false)
 class ExchangeRateControllerTest {
     private final GifApiWrapper gifApiWrapper = new GifApiWrapper();
-    private final GifApiImagesWrapper gifApiImagesWrapper = new GifApiImagesWrapper();
-    private final GifApiOriginalWrapper gifApiOriginalWrapper = new GifApiOriginalWrapper();
-    private final GifApiDataElementWrapper gifApiDataElementWrapper = new GifApiDataElementWrapper();
+    private final GifImagesWrapper gifImagesWrapper = new GifImagesWrapper();
+    private final GifOriginalWrapper gifOriginalWrapper = new GifOriginalWrapper();
+    private final GifDataElementWrapper gifDataElementWrapper = new GifDataElementWrapper();
     @Autowired
     private MockMvc mockMvc;
     @MockBean
@@ -44,19 +44,19 @@ class ExchangeRateControllerTest {
 
     @BeforeEach
     void setUp() {
-        gifApiOriginalWrapper.setUrl("https://gif/rich");
-        gifApiOriginalWrapper.setWidth("335");
-        gifApiOriginalWrapper.setHeight("225");
-        gifApiOriginalWrapper.setSize("2048");
-        gifApiImagesWrapper.setOriginal(gifApiOriginalWrapper);
-        gifApiDataElementWrapper.setImages(gifApiImagesWrapper);
-        gifApiWrapper.setData(new GifApiDataElementWrapper[]{gifApiDataElementWrapper});
+        gifOriginalWrapper.setUrl("https://gif/rich");
+        gifOriginalWrapper.setWidth("335");
+        gifOriginalWrapper.setHeight("225");
+        gifOriginalWrapper.setSize("2048");
+        gifImagesWrapper.setOriginal(gifOriginalWrapper);
+        gifDataElementWrapper.setImages(gifImagesWrapper);
+        gifApiWrapper.setData(new GifDataElementWrapper[]{gifDataElementWrapper});
     }
 
     @Test
     public void whenLatestExchangeRateMoreThanYesterday_thenGifWithRichShouldBeReturned() throws Exception {
         when(exchangeRateService.isLatestCurrencyValueMoreThanYesterday("RUB")).thenReturn(true);
-        when(gifService.getRandomGifByName("rich")).thenReturn(gifApiOriginalWrapper);
+        when(gifService.getRandomGifByName("rich")).thenReturn(gifOriginalWrapper);
 
         RequestBuilder requestBuilder = MockMvcRequestBuilders
                 .get("/api/v1/exchange-rate/RUB")
@@ -79,8 +79,8 @@ class ExchangeRateControllerTest {
     @Test
     public void whenLatestExchangeRateLessThanYesterday_thenGifWithBrokeShouldBeReturned() throws Exception {
         when(exchangeRateService.isLatestCurrencyValueMoreThanYesterday("RUB")).thenReturn(false);
-        gifApiOriginalWrapper.setUrl("https://gif/broke");
-        when(gifService.getRandomGifByName("broke")).thenReturn(gifApiOriginalWrapper);
+        gifOriginalWrapper.setUrl("https://gif/broke");
+        when(gifService.getRandomGifByName("broke")).thenReturn(gifOriginalWrapper);
 
         RequestBuilder requestBuilder = MockMvcRequestBuilders
                 .get("/api/v1/exchange-rate/RUB")

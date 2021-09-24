@@ -1,8 +1,8 @@
 package com.example.alphabanktest.service.impl;
 
-import com.example.alphabanktest.dto.gif.GifApiDataElementWrapper;
-import com.example.alphabanktest.dto.gif.GifApiImagesWrapper;
-import com.example.alphabanktest.dto.gif.GifApiOriginalWrapper;
+import com.example.alphabanktest.dto.gif.GifDataElementWrapper;
+import com.example.alphabanktest.dto.gif.GifImagesWrapper;
+import com.example.alphabanktest.dto.gif.GifOriginalWrapper;
 import com.example.alphabanktest.dto.gif.GifApiWrapper;
 import com.example.alphabanktest.exceptions.GifNotFoundException;
 import com.example.alphabanktest.feign.GifClient;
@@ -22,9 +22,9 @@ import static org.mockito.Mockito.*;
 @SpringBootTest(classes = {GifServiceImpl.class})
 class GifServiceImplTest {
     private final GifApiWrapper gifApiWrapper = new GifApiWrapper();
-    private final GifApiImagesWrapper gifApiImagesWrapper = new GifApiImagesWrapper();
-    private final GifApiOriginalWrapper gifApiOriginalWrapper = new GifApiOriginalWrapper();
-    private final GifApiDataElementWrapper gifApiDataElementWrapper = new GifApiDataElementWrapper();
+    private final GifImagesWrapper gifImagesWrapper = new GifImagesWrapper();
+    private final GifOriginalWrapper gifOriginalWrapper = new GifOriginalWrapper();
+    private final GifDataElementWrapper gifDataElementWrapper = new GifDataElementWrapper();
     @Autowired
     private GifServiceImpl gifService;
     @MockBean
@@ -32,26 +32,26 @@ class GifServiceImplTest {
 
     @BeforeEach
     void setUp() {
-        gifApiOriginalWrapper.setUrl("https://gif/rich");
-        gifApiOriginalWrapper.setWidth("335");
-        gifApiOriginalWrapper.setHeight("225");
-        gifApiOriginalWrapper.setSize("2048");
-        gifApiImagesWrapper.setOriginal(gifApiOriginalWrapper);
-        gifApiDataElementWrapper.setImages(gifApiImagesWrapper);
-        gifApiWrapper.setData(new GifApiDataElementWrapper[]{gifApiDataElementWrapper});
+        gifOriginalWrapper.setUrl("https://gif/rich");
+        gifOriginalWrapper.setWidth("335");
+        gifOriginalWrapper.setHeight("225");
+        gifOriginalWrapper.setSize("2048");
+        gifImagesWrapper.setOriginal(gifOriginalWrapper);
+        gifDataElementWrapper.setImages(gifImagesWrapper);
+        gifApiWrapper.setData(new GifDataElementWrapper[]{gifDataElementWrapper});
     }
 
     @Test
     void whenGetRandomGifByName_thenGifApiOriginalWrapperShouldBeReturned() {
         when(gifClient.getGifApiWrapperByName("rich")).thenReturn(gifApiWrapper);
 
-        GifApiOriginalWrapper expected = new GifApiOriginalWrapper();
+        GifOriginalWrapper expected = new GifOriginalWrapper();
         expected.setUrl("https://gif/rich");
         expected.setWidth("335");
         expected.setHeight("225");
         expected.setSize("2048");
 
-        GifApiOriginalWrapper actual = gifService.getRandomGifByName("rich");
+        GifOriginalWrapper actual = gifService.getRandomGifByName("rich");
 
         assertEquals(expected, actual);
 
@@ -61,7 +61,7 @@ class GifServiceImplTest {
     @Test
     void whenGifIsNotFound_thenGifNotFoundExceptionShouldBeThrown() {
         GifApiWrapper gifApiWrapper = new GifApiWrapper();
-        gifApiWrapper.setData(new GifApiDataElementWrapper[0]);
+        gifApiWrapper.setData(new GifDataElementWrapper[0]);
 
         when(gifClient.getGifApiWrapperByName("rich")).thenReturn(gifApiWrapper);
 

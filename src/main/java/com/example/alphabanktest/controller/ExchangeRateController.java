@@ -1,6 +1,6 @@
 package com.example.alphabanktest.controller;
 
-import com.example.alphabanktest.dto.gif.GifApiOriginalWrapper;
+import com.example.alphabanktest.dto.gif.GifOriginalWrapper;
 import com.example.alphabanktest.service.ExchangeRateService;
 import com.example.alphabanktest.service.GifService;
 import lombok.AllArgsConstructor;
@@ -19,7 +19,7 @@ public class ExchangeRateController {
     private final GifService gifService;
 
     @GetMapping("/{currency}")
-    ResponseEntity<GifApiOriginalWrapper> getGif(@PathVariable String currency) {
+    ResponseEntity<GifOriginalWrapper> getGif(@PathVariable String currency) {
         if (exchangeRateService.isLatestCurrencyValueMoreThanYesterday(currency)) {
             return new ResponseEntity<>(gifService.getRandomGifByName("rich"), HttpStatus.OK);
         } else {

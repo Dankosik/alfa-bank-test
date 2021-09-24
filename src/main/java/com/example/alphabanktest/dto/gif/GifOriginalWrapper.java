@@ -3,7 +3,7 @@ package com.example.alphabanktest.dto.gif;
 import lombok.Data;
 
 @Data
-public class GifApiOriginalWrapper {
+public class GifOriginalWrapper {
     private String url;
     private String size;
     private String width;
