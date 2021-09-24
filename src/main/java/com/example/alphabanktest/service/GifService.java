@@ -1,7 +1,7 @@
 package com.example.alphabanktest.service;
 
-import com.example.alphabanktest.dto.gif.GifApiWrapper;
+import com.example.alphabanktest.dto.gif.GifApiOriginalWrapper;
 
 public interface GifService {
-    String getRandomGifUrl(GifApiWrapper gifApiWrapper);
+    GifApiOriginalWrapper getRandomGifByName(String name);
 }
