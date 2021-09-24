@@ -1,6 +1,6 @@
 package com.example.alphabanktest.feign;
 
-import com.example.alphabanktest.dto.ExchangeRate;
+import com.example.alphabanktest.dto.currency.ExchangeRate;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;

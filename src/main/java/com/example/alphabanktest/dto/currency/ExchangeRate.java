@@ -1,4 +1,4 @@
-package com.example.alphabanktest.dto;
+package com.example.alphabanktest.dto.currency;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
