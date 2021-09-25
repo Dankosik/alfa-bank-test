@@ -40,7 +40,7 @@
 3) ```git clone https://github.com/Dankosik/alpha-bank-test```
 4) ```cd alpha-bank-test```
 5) ```docker build -t alpha-bank-test .``` - build docker image
-6) ```docker run -p 8080:8080 alpha-bank-test-remote``` - run docker container
+6) ```docker run -p 8080:8080 alpha-bank-test``` - run docker container
 
 ### Api example
 
