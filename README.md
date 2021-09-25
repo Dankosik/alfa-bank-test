@@ -33,8 +33,6 @@
 
 ### Docker
 
-**Linux/MacOS**
-
 1) Open terminal
 2) ```cd /path/to/working/directory```
 3) ```git clone https://github.com/Dankosik/alpha-bank-test```
