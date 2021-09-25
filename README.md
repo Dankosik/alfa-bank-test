@@ -15,7 +15,7 @@
 2) ```cd /path/to/your/directory```
 3) ```git clone https://github.com/Dankosik/alpha-bank-test```
 4) ```cd alpha-bank-test```
-5) ```./gradlew bootRun``` - run application or ```./gradlew bootRun --args='--server.port=8888'``` - to select server port
+5) ```./gradlew bootRun``` - run application (default server port 8080) or ```./gradlew bootRun --args='--server.port=8888'``` - to select server port
 6) ```./gradlew test``` - run tests
 
 
@@ -26,7 +26,7 @@
 2) ```cd /path/to/your/directory```
 3) ```git clone https://github.com/Dankosik/alpha-bank-test```
 4) ```cd alpha-bank-test```
-5) ```gradlew bootRun``` - run application or ```gradlew bootRun --args='--server.port=8888'``` - to select server port
+5) ```gradlew bootRun``` - run application (default server port 8080) or ```gradlew bootRun --args='--server.port=8888'``` - to select server port
 6) ```gradlew test``` - run tests
 
 
