@@ -7,7 +7,9 @@
 
      https://stackoverflow.com/questions/52511778/how-to-install-openjdk-11-on-windows
 
-### Start instruction
+## Start instruction
+
+### Gragle
 
 **Linux/MacOS**
 
@@ -29,6 +31,16 @@
 5) ```gradlew bootRun``` - run application (default server port 8080) or ```gradlew bootRun --args='--server.port=8888'``` - to select server port
 6) ```gradlew test``` - run tests
 
+### Docker
+
+**Linux/MacOS**
+
+1) Open terminal
+2) ```cd /path/to/working/directory```
+3) ```git clone https://github.com/Dankosik/alpha-bank-test```
+4) ```cd alpha-bank-test```
+5) ```docker build -t alpha-bank-test .``` - build docker image
+6) ```docker run -p 8080:8080 alpha-bank-test-remote``` - run docker container
 
 ### Api example
 
