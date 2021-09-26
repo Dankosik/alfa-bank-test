@@ -5,7 +5,7 @@ import com.example.alphabanktest.dto.gif.GifDataElementWrapper;
 import com.example.alphabanktest.dto.gif.GifImagesWrapper;
 import com.example.alphabanktest.dto.gif.GifOriginalWrapper;
 import com.example.alphabanktest.exceptions.GifNotFoundException;
-import com.example.alphabanktest.feign.GifClient;
+import com.example.alphabanktest.feignclient.GifClient;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;

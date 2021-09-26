@@ -1,4 +1,4 @@
-package com.example.alphabanktest.feign;
+package com.example.alphabanktest.feignclient;
 
 import com.example.alphabanktest.dto.currency.ExchangeRate;
 import org.springframework.cloud.openfeign.FeignClient;
