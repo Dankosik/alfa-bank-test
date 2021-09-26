@@ -1,4 +1,4 @@
-package com.example.alphabanktest.exceptions;
+package com.example.alphabanktest.exception;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

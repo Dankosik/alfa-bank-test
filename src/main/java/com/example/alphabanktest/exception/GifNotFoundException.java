@@ -1,4 +1,4 @@
-package com.example.alphabanktest.exceptions;
+package com.example.alphabanktest.exception;
 
 public class GifNotFoundException extends RuntimeException {
     public GifNotFoundException(Throwable cause) {

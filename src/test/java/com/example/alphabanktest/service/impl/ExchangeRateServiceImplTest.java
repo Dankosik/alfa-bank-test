@@ -1,7 +1,7 @@
 package com.example.alphabanktest.service.impl;
 
 import com.example.alphabanktest.dto.currency.ExchangeRate;
-import com.example.alphabanktest.exceptions.CurrencyNotFoundException;
+import com.example.alphabanktest.exception.CurrencyNotFoundException;
 import com.example.alphabanktest.feignclient.ExchangeRateClient;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

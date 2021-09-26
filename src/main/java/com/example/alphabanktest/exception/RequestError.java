@@ -1,4 +1,4 @@
-package com.example.alphabanktest.exceptions;
+package com.example.alphabanktest.exception;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

@@ -2,7 +2,7 @@ package com.example.alphabanktest.service.impl;
 
 import com.example.alphabanktest.dto.gif.GifApiWrapper;
 import com.example.alphabanktest.dto.gif.GifOriginalWrapper;
-import com.example.alphabanktest.exceptions.GifNotFoundException;
+import com.example.alphabanktest.exception.GifNotFoundException;
 import com.example.alphabanktest.feignclient.GifClient;
 import com.example.alphabanktest.service.GifService;
 import lombok.AllArgsConstructor;

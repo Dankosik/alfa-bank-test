@@ -1,6 +1,6 @@
 package com.example.alphabanktest.service.impl;
 
-import com.example.alphabanktest.exceptions.CurrencyNotFoundException;
+import com.example.alphabanktest.exception.CurrencyNotFoundException;
 import com.example.alphabanktest.feignclient.ExchangeRateClient;
 import com.example.alphabanktest.service.ExchangeRateService;
 import lombok.AllArgsConstructor;
