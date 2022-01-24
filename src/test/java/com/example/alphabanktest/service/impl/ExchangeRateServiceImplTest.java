@@ -1,51 +1,37 @@
 package com.example.alphabanktest.service.impl;
 
-import com.example.alphabanktest.dto.currency.ExchangeRate;
 import com.example.alphabanktest.exception.CurrencyNotFoundException;
-import com.example.alphabanktest.feignclient.ExchangeRateClient;
+import com.example.alphabanktest.service.ExchangeRateService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.test.mock.mockito.MockBean;
-import org.springframework.test.context.junit.jupiter.SpringExtension;
+import org.springframework.cloud.contract.wiremock.AutoConfigureWireMock;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.HashMap;
 
-import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.*;
+import static com.github.tomakehurst.wiremock.client.WireMock.aResponse;
+import static com.github.tomakehurst.wiremock.client.WireMock.get;
+import static com.github.tomakehurst.wiremock.client.WireMock.stubFor;
+import static com.github.tomakehurst.wiremock.client.WireMock.urlEqualTo;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
-@ExtendWith(SpringExtension.class)
-@SpringBootTest(classes = {ExchangeRateServiceImpl.class})
+@SpringBootTest
+@AutoConfigureWireMock(port = 0)
 class ExchangeRateServiceImplTest {
-    private final ExchangeRate exchangeRate = new ExchangeRate();
-    private final ExchangeRate yesterdayExchangeRate = new ExchangeRate();
+    @Value(value = "${exchange-rate-api.api-key}")
+    private String API_KEY;
     @Autowired
-    private ExchangeRateServiceImpl exchangeRateService;
-    @MockBean
-    private ExchangeRateClient exchangeRateClient;
+    private ExchangeRateService exchangeRateService;
     private String format;
 
 
     @BeforeEach
     void setUp() {
-        exchangeRate.setBase("USD");
-        HashMap<String, Double> rates = new HashMap<>();
-        rates.put("RUB", 75.12);
-        rates.put("AGA", 44.55);
-        rates.put("JAS", 22.1);
-        exchangeRate.setRates(rates);
-
-        yesterdayExchangeRate.setBase("USD");
-        HashMap<String, Double> yesterdayRates = new HashMap<>();
-        yesterdayRates.put("RUB", 73.15);
-        yesterdayRates.put("AGA", 45.55);
-        yesterdayRates.put("JAS", 21.1);
-        yesterdayExchangeRate.setRates(yesterdayRates);
-
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
         Calendar calendar = Calendar.getInstance();
         calendar.add(Calendar.DAY_OF_MONTH, -1);
@@ -55,44 +41,46 @@ class ExchangeRateServiceImplTest {
 
     @Test
     void whenLatestCurrencyValueMoreThanYesterday_thenTrueShouldBeReturned() {
-        when(exchangeRateClient.getLatestExchangeRate()).thenReturn(exchangeRate);
-        when(exchangeRateClient.getExchangeRateByDate(format)).thenReturn(yesterdayExchangeRate);
+        stubForLatestExchangeRate();
+        stubForYesterdayExchangeRate(format);
 
         assertTrue(exchangeRateService.isLatestCurrencyValueMoreThanYesterday("RUB"));
-
-        verify(exchangeRateClient, times(1)).getLatestExchangeRate();
-        verify(exchangeRateClient, times(1)).getExchangeRateByDate(format);
     }
 
     @Test
     void whenLatestCurrencyValueLessThanYesterday_thenFalseShouldBeReturned() {
-        when(exchangeRateClient.getLatestExchangeRate()).thenReturn(exchangeRate);
-        when(exchangeRateClient.getExchangeRateByDate(format)).thenReturn(yesterdayExchangeRate);
+        stubForLatestExchangeRate();
+        stubForYesterdayExchangeRate(format);
 
         assertFalse(exchangeRateService.isLatestCurrencyValueMoreThanYesterday("AGA"));
-
-        verify(exchangeRateClient, times(1)).getLatestExchangeRate();
-        verify(exchangeRateClient, times(1)).getExchangeRateByDate(format);
     }
 
     @Test
     void whenCurrencyIsNotFoundInLatestExchangeRate_thenCurrencyNotFoundExceptionShouldBeThrown() {
-        when(exchangeRateClient.getLatestExchangeRate()).thenReturn(exchangeRate);
+        stubForLatestExchangeRate();
 
         assertThrows(CurrencyNotFoundException.class, () -> exchangeRateService.isLatestCurrencyValueMoreThanYesterday("ADS"));
-
-        verify(exchangeRateClient, times(1)).getLatestExchangeRate();
-        verify(exchangeRateClient, never()).getExchangeRateByDate(format);
     }
 
     @Test
     void whenCurrencyIsNotFoundInYesterdayExchangeRate_thenCurrencyNotFoundExceptionShouldBeThrown() {
-        when(exchangeRateClient.getExchangeRateByDate("2021-09-23")).thenReturn(yesterdayExchangeRate);
-        when(exchangeRateClient.getLatestExchangeRate()).thenReturn(exchangeRate);
+        stubForLatestExchangeRate();
+        stubForYesterdayExchangeRate("2021-09-23");
 
         assertThrows(CurrencyNotFoundException.class, () -> exchangeRateService.isLatestCurrencyValueMoreThanYesterday("ADS"));
+    }
 
-        verify(exchangeRateClient, times(1)).getLatestExchangeRate();
-        verify(exchangeRateClient, never()).getExchangeRateByDate(format);
+    private void stubForLatestExchangeRate() {
+        stubFor(get(urlEqualTo("/latest.json?app_id=" + API_KEY))
+                .willReturn(aResponse()
+                        .withHeader("Content-Type", "application/json;")
+                        .withBody("{\"base\":\"USD\", \"rates\":{\"RUB\":\"75.12\",\"AGA\":\"44.55\",\"JAS\":\"22.1\"}}")));
+    }
+
+    private void stubForYesterdayExchangeRate(String date) {
+        stubFor(get(urlEqualTo("/historical/" + date + ".json?app_id=" + API_KEY))
+                .willReturn(aResponse()
+                        .withHeader("Content-Type", "application/json;")
+                        .withBody("{\"base\":\"USD\", \"rates\":{\"RUB\":\"73.15\",\"AGA\":\"45.55\",\"JAS\":\"21.1\"}}")));
     }
 }

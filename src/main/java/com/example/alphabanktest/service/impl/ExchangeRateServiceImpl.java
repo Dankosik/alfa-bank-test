@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.HashMap;
+import java.util.Map;
 
 @Service
 @Slf4j
@@ -23,7 +23,7 @@ public class ExchangeRateServiceImpl implements ExchangeRateService {
     }
 
     private Double getLatestCurrencyValueVersusDollar(String currency) {
-        HashMap<String, Double> rates = exchangeRateClient.getLatestExchangeRate().getRates();
+        Map<String, Double> rates = exchangeRateClient.getLatestExchangeRate().getRates();
         if (!rates.containsKey(currency)) {
             log.warn("Currency: " + currency + " is not found");
             throw new CurrencyNotFoundException("Currency: " + currency + " is not found");
@@ -36,7 +36,7 @@ public class ExchangeRateServiceImpl implements ExchangeRateService {
         Calendar calendar = Calendar.getInstance();
         calendar.add(Calendar.DAY_OF_MONTH, -1);
 
-        HashMap<String, Double> rates = exchangeRateClient
+        Map<String, Double> rates = exchangeRateClient
                 .getExchangeRateByDate(simpleDateFormat.format(calendar.getTime())).getRates();
 
         if (!rates.containsKey(currency)) {

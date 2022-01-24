@@ -4,10 +4,11 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.util.HashMap;
+import java.util.Map;
 
 @Data
 @NoArgsConstructor
 public class ExchangeRate {
     private String base;
-    private HashMap<String, Double> rates;
+    private Map<String, Double> rates;
 }
