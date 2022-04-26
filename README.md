@@ -15,8 +15,8 @@
 
 1) Open terminal
 2) ```cd /path/to/working/directory```
-3) ```git clone https://github.com/Dankosik/alpha-bank-test```
-4) ```cd alpha-bank-test```
+3) ```git clone https://github.com/Dankosik/alfa-bank-test```
+4) ```cd alfa-bank-test```
 5) ```./gradlew bootRun``` - run application (default server port 8080) or ```./gradlew bootRun --args='--server.port=8888'``` - to select server port
 6) ```./gradlew test``` - run tests
 
@@ -26,8 +26,8 @@
 **Windows**
 1) Open comand line
 2) ```cd /path/to/working/directory```
-3) ```git clone https://github.com/Dankosik/alpha-bank-test```
-4) ```cd alpha-bank-test```
+3) ```git clone https://github.com/Dankosik/alfa-bank-test```
+4) ```cd alfa-bank-test```
 5) ```gradlew bootRun``` - run application (default server port 8080) or ```gradlew bootRun --args='--server.port=8888'``` - to select server port
 6) ```gradlew test``` - run tests
 
@@ -35,10 +35,10 @@
 
 1) Open terminal
 2) ```cd /path/to/working/directory```
-3) ```git clone https://github.com/Dankosik/alpha-bank-test```
-4) ```cd alpha-bank-test```
-5) ```docker build -t alpha-bank-test .``` - build docker image
-6) ```docker run -p 8080:8080 alpha-bank-test``` - run docker container
+3) ```git clone https://github.com/Dankosik/alfa-bank-test```
+4) ```cd alfa-bank-test```
+5) ```docker build -t alfa-bank-test .``` - build docker image
+6) ```docker run -p 8080:8080 alfa-bank-test``` - run docker container
 
 ### Api example
 
